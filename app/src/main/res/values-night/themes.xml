@@ -4,5 +4,6 @@
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/mainGreen</item>
         <item name="android:windowBackground">@color/black_0D</item>
+        <item name="android:textColor">@color/white_f2</item>
     </style>
 </resources>

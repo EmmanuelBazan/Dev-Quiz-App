@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/mainGreen</item>
         <item name="android:windowBackground">@color/white_f2</item>
+        <item name="android:textColor">@color/black_33</item>
     </style>
 
     <style name="Theme.DevQuiz" parent="Base.Theme.DevQuiz" />

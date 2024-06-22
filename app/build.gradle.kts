@@ -13,7 +13,7 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,14 +36,19 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        buildConfig = true
     }
 }
 
 dependencies {
     val navVersion = "2.7.7"
+    val lottieVersion = "3.5.0"
     val fragmentVersion = "1.8.0"
     val activityVersion = "1.9.0"
     val lifecycleVersion = "2.8.2"
+
+    //Lottie
+    implementation ("com.airbnb.android:lottie:$lottieVersion")
 
     //Activity
     implementation("androidx.activity:activity-ktx:$activityVersion")
