@@ -33,10 +33,28 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
     val navVersion = "2.7.7"
+    val fragmentVersion = "1.8.0"
+    val activityVersion = "1.9.0"
+    val lifecycleVersion = "2.8.2"
+
+    //Activity
+    implementation("androidx.activity:activity-ktx:$activityVersion")
+
+    //Fragment
+    implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
+
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+
+    //ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
 
     //NavComponent
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
