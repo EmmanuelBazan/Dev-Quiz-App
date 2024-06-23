@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.pages.topic.pages.SelectTopicFragment"
+    android:orientation="vertical">
+
+    <include android:id="@+id/appBarSelectTopic" layout="@layout/custom_app_bar"/>
+
+    <GridView
+        android:id="@+id/gridViewTopics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="15dp"
+        android:verticalSpacing="10dp"
+        android:numColumns="2"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="22dp"
+        android:scrollbars="none"/>
+
+</LinearLayout>

@@ -13,7 +13,7 @@ class CustomAppBar(
     private val title: String,
     val onGoBackSubmit: () -> Unit,
     private val btnRightIcon: Int = R.drawable.arrow_back,
-    private val btnRightColor: Int = R.color.white,
+    private val btnRightColor: Int = R.color.transparent,
     private val onBtnRightSubmit: () -> Unit = { println("# BTN RIGHT PRESSED") },
     private val onlyTitle: Boolean = false,
 ) {

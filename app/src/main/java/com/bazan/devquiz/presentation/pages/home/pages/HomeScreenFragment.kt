@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bazan.devquiz.R
@@ -27,6 +28,7 @@ class HomeScreenFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
         initComponents()
+        initListeners()
         initRemindersList()
         return binding.root
     }
@@ -42,18 +44,25 @@ class HomeScreenFragment : Fragment() {
         )
     }
 
+    private fun initListeners() {
+        binding.btnAddReminder.setOnClickListener{
+            val action = HomeScreenFragmentDirections.actionHomeScreenFragmentToSelectTopicFragment()
+            findNavController().navigate(action)
+        }
+    }
+
     private fun initRemindersList() {
         homeViewModel.questionReminders.observe(requireActivity()) { reminders ->
             if (reminders != null) {
-                val recyclerViewFiles =
+                val recyclerView =
                     binding.root.findViewById<RecyclerView>(R.id.recyclerViewQuestionsReminders)
 
-                recyclerViewFiles.layoutManager = LinearLayoutManager(
+                recyclerView.layoutManager = LinearLayoutManager(
                     requireContext(),
                     LinearLayoutManager.VERTICAL, false
                 )
 
-                recyclerViewFiles.adapter = QuestionReminderListAdapter(reminders)
+                recyclerView.adapter = QuestionReminderListAdapter(reminders)
             }
         }
     }

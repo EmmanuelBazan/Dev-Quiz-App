@@ -43,7 +43,7 @@ android {
             res {
                 srcDirs("src\\main\\res", "src\\main\\res\\layouts\\components",
                     "src\\main\\res",
-                    "src\\main\\res\\layouts\\home"
+                    "src\\main\\res\\layouts\\home", "src\\main\\res", "src\\main\\res\\layouts\\topic"
                 )
             }
         }

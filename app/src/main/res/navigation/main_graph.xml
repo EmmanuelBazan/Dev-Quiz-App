@@ -18,5 +18,14 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.bazan.devquiz.presentation.pages.home.pages.HomeScreenFragment"
         android:label="fragment_home_screen"
-        tools:layout="@layout/fragment_home_screen" />
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_selectTopicFragment"
+            app:destination="@id/selectTopicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectTopicFragment"
+        android:name="com.bazan.devquiz.presentation.pages.topic.pages.SelectTopicFragment"
+        android:label="fragment_select_topic"
+        tools:layout="@layout/fragment_select_topic" />
 </navigation>
