@@ -18,12 +18,14 @@ class DialogDifficulty(
     private val dialogLayout: Int,
     private val onSubmitBtnCancelListener: () -> Unit = { println("### NO CANCEL FUNCTION") }
 ): DialogFragment()  {
-    private lateinit var builder: AlertDialog.Builder
-    private lateinit var inflater: LayoutInflater
+    private lateinit var btnEasy: Button
+    private lateinit var btnHard: Button
     private lateinit var dialogView: View
-    private lateinit var btnContinue: Button
-    private lateinit var btnCancel: LinearLayout
     private lateinit var btnClose: ImageButton
+    private lateinit var btnIntermediate: Button
+    private lateinit var btnCancel: LinearLayout
+    private lateinit var inflater: LayoutInflater
+    private lateinit var builder: AlertDialog.Builder
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         initComponents()
@@ -39,21 +41,27 @@ class DialogDifficulty(
         builder = AlertDialog.Builder(requireActivity())
         inflater = requireActivity().layoutInflater;
         dialogView = inflater.inflate(dialogLayout, null)
-//        btnContinue = dialogView.findViewById(R.id.btnOkCustomDialog)
-//        btnCancel = dialogView.findViewById(R.id.btnCancelCustomDialog)
+        btnEasy = dialogView.findViewById(R.id.btnEasyDifficultyDialog)
+        btnIntermediate = dialogView.findViewById(R.id.btnIntermediateDifficultyDialog)
+        btnHard = dialogView.findViewById(R.id.btnHardDifficultyDialog)
         btnClose = dialogView.findViewById(R.id.btnCloseCustomDialog)
     }
 
     private fun initListeners() {
-//        btnContinue.setOnClickListener{
-//            onSubmitBtnOkListener.invoke()
-//            dismiss()
-//        }
-//
-//        btnCancel.setOnClickListener {
-//            onSubmitBtnCancelListener.invoke()
-//            dismiss()
-//        }
+        btnEasy.setOnClickListener{
+            onSubmitBtnOkListener.invoke()
+            dismiss()
+        }
+
+        btnIntermediate.setOnClickListener{
+            onSubmitBtnOkListener.invoke()
+            dismiss()
+        }
+
+        btnHard.setOnClickListener{
+            onSubmitBtnOkListener.invoke()
+            dismiss()
+        }
 
         btnClose.setOnClickListener{
             dismiss()

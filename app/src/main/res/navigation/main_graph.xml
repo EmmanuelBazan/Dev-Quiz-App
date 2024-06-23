@@ -27,5 +27,14 @@
         android:id="@+id/selectTopicFragment"
         android:name="com.bazan.devquiz.presentation.pages.topic.pages.SelectTopicFragment"
         android:label="fragment_select_topic"
-        tools:layout="@layout/fragment_select_topic" />
+        tools:layout="@layout/fragment_select_topic" >
+        <action
+            android:id="@+id/action_selectTopicFragment_to_scheduleScreenFragment"
+            app:destination="@id/scheduleScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scheduleScreenFragment"
+        android:name="com.bazan.devquiz.presentation.pages.schedule.pages.ScheduleScreenFragment"
+        android:label="fragment_schedule_screen"
+        tools:layout="@layout/fragment_schedule_screen" />
 </navigation>

@@ -47,7 +47,11 @@ class SelectTopicFragment : Fragment() {
                 findNavController().popBackStack()
             })
 
-        dialogDifficulty = DialogDifficulty(onSubmitBtnOkListener = {},R.layout.dialog_difficulty)
+        dialogDifficulty = DialogDifficulty(onSubmitBtnOkListener = {
+            val action =
+                SelectTopicFragmentDirections.actionSelectTopicFragmentToScheduleScreenFragment()
+            findNavController().navigate(action)
+        }, R.layout.dialog_difficulty)
     }
 
     private fun initTopicList() {
