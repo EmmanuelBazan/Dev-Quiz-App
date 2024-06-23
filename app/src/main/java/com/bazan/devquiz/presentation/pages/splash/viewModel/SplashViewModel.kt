@@ -1,4 +1,6 @@
 package com.bazan.devquiz.presentation.pages.splash.viewModel
 
-class SplashViewModel {
+import androidx.lifecycle.ViewModel
+
+class SplashViewModel(): ViewModel() {
 }

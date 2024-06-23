@@ -38,6 +38,16 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    sourceSets {
+        getByName("main") {
+            res {
+                srcDirs("src\\main\\res", "src\\main\\res\\layouts\\components",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\home"
+                )
+            }
+        }
+    }
 }
 
 dependencies {
