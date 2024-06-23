@@ -19,6 +19,6 @@ class CustomTimePickerDialog(val listener: (String) -> Unit) : DialogFragment(),
         return dialog
     }
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        listener("$hourOfDay : $minute")
+        listener("$hourOfDay:$minute")
     }
 }

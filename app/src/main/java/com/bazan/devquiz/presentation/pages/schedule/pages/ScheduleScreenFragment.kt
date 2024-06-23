@@ -10,12 +10,16 @@ import com.bazan.devquiz.R
 import com.bazan.devquiz.databinding.FragmentScheduleScreenBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
 import com.bazan.devquiz.presentation.components.CustomTimePickerDialog
+import com.bazan.devquiz.presentation.utils.DateTimeUtils
 
 class ScheduleScreenFragment : Fragment() {
     private var _binding: FragmentScheduleScreenBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var customAppBar: CustomAppBar
+
+    private val dateTimeUtils: DateTimeUtils = DateTimeUtils()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +51,6 @@ class ScheduleScreenFragment : Fragment() {
     }
 
     private fun onTimeSelected(time:String) {
-        binding.btnInitTimePicker.text = time
+        binding.btnInitTimePicker.text = dateTimeUtils.convertTo12HourFormat(time)
     }
 }
