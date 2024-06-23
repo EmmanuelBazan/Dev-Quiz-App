@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.bazan.devquiz.R
 import com.bazan.devquiz.databinding.FragmentScheduleScreenBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
+import com.bazan.devquiz.presentation.components.CustomInformationDialog
 import com.bazan.devquiz.presentation.components.CustomTimePickerDialog
 import com.bazan.devquiz.presentation.utils.DateTimeUtils
 
@@ -17,6 +18,7 @@ class ScheduleScreenFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var customAppBar: CustomAppBar
+    private lateinit var successDialog: CustomInformationDialog
 
     private val dateTimeUtils: DateTimeUtils = DateTimeUtils()
 
@@ -35,11 +37,26 @@ class ScheduleScreenFragment : Fragment() {
         customAppBar = CustomAppBar(requireContext(), appBarView, "Programa tu pregunta", onGoBackSubmit = {
             findNavController().popBackStack()
         })
+
+        successDialog = CustomInformationDialog(
+            onSubmitBtnOkListener = {
+                goToHome()
+            },
+            R.layout.information_dialog_template
+        )
     }
 
     private fun initListeners() {
         binding.btnInitTimePicker.setOnClickListener {
             showTimePickerDialog()
+        }
+
+        binding.btnCancelScheduleScreen.setOnClickListener {
+            goToHome()
+        }
+
+        binding.btnScheduleScheduleScreen.setOnClickListener {
+            successDialog.show(parentFragmentManager,"ScheduleSuccessDialog")
         }
     }
 
@@ -52,5 +69,10 @@ class ScheduleScreenFragment : Fragment() {
 
     private fun onTimeSelected(time:String) {
         binding.btnInitTimePicker.text = dateTimeUtils.convertTo12HourFormat(time)
+    }
+
+    private fun goToHome(){
+        val action = ScheduleScreenFragmentDirections.actionScheduleScreenFragmentToHomeScreenFragment()
+        findNavController().navigate(action)
     }
 }

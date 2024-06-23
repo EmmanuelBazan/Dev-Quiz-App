@@ -36,5 +36,9 @@
         android:id="@+id/scheduleScreenFragment"
         android:name="com.bazan.devquiz.presentation.pages.schedule.pages.ScheduleScreenFragment"
         android:label="fragment_schedule_screen"
-        tools:layout="@layout/fragment_schedule_screen" />
+        tools:layout="@layout/fragment_schedule_screen" >
+        <action
+            android:id="@+id/action_scheduleScreenFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+    </fragment>
 </navigation>
