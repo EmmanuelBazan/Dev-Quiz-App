@@ -16,6 +16,7 @@ import com.bazan.devquiz.databinding.FragmentSelectTopicBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
 import com.bazan.devquiz.presentation.pages.home.adapters.QuestionReminderListAdapter
 import com.bazan.devquiz.presentation.pages.topic.adapters.TopicListAdapter
+import com.bazan.devquiz.presentation.pages.topic.components.DialogDifficulty
 import com.bazan.devquiz.presentation.pages.topic.viewModel.SelectTopicViewModel
 
 class SelectTopicFragment : Fragment() {
@@ -23,6 +24,7 @@ class SelectTopicFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var customAppBar: CustomAppBar
+    private lateinit var dialogDifficulty: DialogDifficulty
 
     private val selectTopicViewModel: SelectTopicViewModel by activityViewModels()
     override fun onCreateView(
@@ -44,6 +46,8 @@ class SelectTopicFragment : Fragment() {
             onGoBackSubmit = {
                 findNavController().popBackStack()
             })
+
+        dialogDifficulty = DialogDifficulty(onSubmitBtnOkListener = {},R.layout.dialog_difficulty)
     }
 
     private fun initTopicList() {
@@ -52,7 +56,9 @@ class SelectTopicFragment : Fragment() {
                 val gridView =
                     binding.root.findViewById<GridView>(R.id.gridViewTopics)
 
-                val adapter = TopicListAdapter(requireContext(),topics)
+                val adapter = TopicListAdapter(requireContext(), topics, onClick = {
+                    dialogDifficulty.show(parentFragmentManager, "DialogDifficulty")
+                })
 
                 gridView.adapter = adapter
             }

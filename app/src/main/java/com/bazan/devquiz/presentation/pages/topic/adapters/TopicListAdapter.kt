@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.bazan.devquiz.R
 
-const val FOOTER_VIEW = 1
-const val HEADER_VIEW = 2
-
-class TopicListAdapter(private val context: Context, private val topics: List<String>) : BaseAdapter() {
+class TopicListAdapter(
+    private val context: Context,
+    private val topics: List<String>,
+    private val onClick: () -> Unit
+) :
+    BaseAdapter() {
 
     override fun getCount(): Int {
         return topics.size + 2
@@ -30,6 +32,10 @@ class TopicListAdapter(private val context: Context, private val topics: List<St
             view = LayoutInflater.from(context).inflate(R.layout.item_topic_list, parent, false)
         } else {
             view = convertView
+        }
+
+        view.setOnClickListener{
+            onClick()
         }
 
         return view
