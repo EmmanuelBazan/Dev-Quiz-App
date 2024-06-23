@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bazan.devquiz.R
 import com.bazan.devquiz.databinding.FragmentHomeScreenBinding
+import com.bazan.devquiz.presentation.components.CustomAppBar
 import com.bazan.devquiz.presentation.pages.home.adapters.QuestionReminderListAdapter
 import com.bazan.devquiz.presentation.pages.home.viewModel.HomeViewModel
 
@@ -17,18 +18,32 @@ class HomeScreenFragment : Fragment() {
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var customAppBar: CustomAppBar
+
     private val homeViewModel: HomeViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeScreenBinding.inflate(inflater,container,false)
+        _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
+        initComponents()
         initRemindersList()
         return binding.root
     }
 
+    private fun initComponents() {
+        val appBarView = binding.root.findViewById<View>(R.id.appBarHomeScreen)
+        customAppBar = CustomAppBar(
+            requireContext(),
+            appBarView,
+            "Dev Quiz",
+            onGoBackSubmit = {},
+            onlyTitle = true
+        )
+    }
+
     private fun initRemindersList() {
-        homeViewModel.questionReminders.observe(requireActivity()) {reminders ->
+        homeViewModel.questionReminders.observe(requireActivity()) { reminders ->
             if (reminders != null) {
                 val recyclerViewFiles =
                     binding.root.findViewById<RecyclerView>(R.id.recyclerViewQuestionsReminders)
