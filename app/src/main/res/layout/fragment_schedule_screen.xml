@@ -3,9 +3,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.pages.schedule.pages.ScheduleScreenFragment"
     android:orientation="vertical">
 
     <include android:id="@+id/appBarSchedule" layout="@layout/custom_app_bar"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/btnInitTimePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="48dp"
+            android:layout_marginTop="20dp"
+            android:text="05 : 27 PM"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/btnInitTimePicker"
+            tools:layout_editor_absoluteX="16dp">
+
+<!--            <Button-->
+<!--                android:id="@+id/button4"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:padding="0dp"-->
+<!--                android:text="L" />-->
+
+<!--            <Button-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:padding="0dp"-->
+<!--                android:text="M" />-->
+
+<!--            <Button-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:padding="0dp"-->
+<!--                android:text="M" />-->
+
+<!--            <Button-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:padding="0dp"-->
+<!--                android:text="J"-->
+<!--                tools:layout_editor_absoluteX="46dp"-->
+<!--                tools:layout_editor_absoluteY="0dp" />-->
+
+<!--            <Button-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:padding="0dp"-->
+<!--                android:text="V" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/button3"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:padding="0dp"-->
+<!--                android:text="S"-->
+<!--                tools:layout_editor_absoluteX="87dp"-->
+<!--                tools:layout_editor_absoluteY="0dp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/button2"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:padding="0dp"-->
+<!--                android:text="D"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/button3"-->
+<!--                tools:layout_editor_absoluteY="0dp" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

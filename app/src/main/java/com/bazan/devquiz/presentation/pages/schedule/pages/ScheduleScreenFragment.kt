@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.bazan.devquiz.R
 import com.bazan.devquiz.databinding.FragmentScheduleScreenBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
+import com.bazan.devquiz.presentation.components.CustomTimePickerDialog
 
 class ScheduleScreenFragment : Fragment() {
     private var _binding: FragmentScheduleScreenBinding? = null
@@ -21,6 +22,7 @@ class ScheduleScreenFragment : Fragment() {
     ): View? {
         _binding = FragmentScheduleScreenBinding.inflate(inflater, container, false)
         initComponent()
+        initListeners()
         return binding.root
     }
 
@@ -29,5 +31,22 @@ class ScheduleScreenFragment : Fragment() {
         customAppBar = CustomAppBar(requireContext(), appBarView, "Programa tu pregunta", onGoBackSubmit = {
             findNavController().popBackStack()
         })
+    }
+
+    private fun initListeners() {
+        binding.btnInitTimePicker.setOnClickListener {
+            showTimePickerDialog()
+        }
+    }
+
+    private fun showTimePickerDialog() {
+        val timePicker = CustomTimePickerDialog {time ->
+            onTimeSelected(time)
+        }
+        timePicker.show(parentFragmentManager,"DialogTimePicker")
+    }
+
+    private fun onTimeSelected(time:String) {
+        binding.btnInitTimePicker.text = time
     }
 }
