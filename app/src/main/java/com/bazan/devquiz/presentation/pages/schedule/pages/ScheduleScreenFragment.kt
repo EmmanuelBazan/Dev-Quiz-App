@@ -11,6 +11,7 @@ import com.bazan.devquiz.databinding.FragmentScheduleScreenBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
 import com.bazan.devquiz.presentation.components.CustomInformationDialog
 import com.bazan.devquiz.presentation.components.CustomTimePickerDialog
+import com.bazan.devquiz.presentation.pages.schedule.components.WeekDaysSelector
 import com.bazan.devquiz.presentation.utils.DateTimeUtils
 
 class ScheduleScreenFragment : Fragment() {
@@ -19,6 +20,7 @@ class ScheduleScreenFragment : Fragment() {
 
     private lateinit var customAppBar: CustomAppBar
     private lateinit var successDialog: CustomInformationDialog
+    private lateinit var weekDaysSelector: WeekDaysSelector
 
     private val dateTimeUtils: DateTimeUtils = DateTimeUtils()
 
@@ -34,9 +36,10 @@ class ScheduleScreenFragment : Fragment() {
 
     private fun initComponent() {
         val appBarView = binding.root.findViewById<View>(R.id.appBarSchedule)
-        customAppBar = CustomAppBar(requireContext(), appBarView, "Programa tu pregunta", onGoBackSubmit = {
-            findNavController().popBackStack()
-        })
+        customAppBar =
+            CustomAppBar(requireContext(), appBarView, "Programa tu pregunta", onGoBackSubmit = {
+                findNavController().popBackStack()
+            })
 
         successDialog = CustomInformationDialog(
             onSubmitBtnOkListener = {
@@ -44,6 +47,8 @@ class ScheduleScreenFragment : Fragment() {
             },
             R.layout.information_dialog_template
         )
+
+        weekDaysSelector = WeekDaysSelector(requireContext(), binding.layoutWeekDays)
     }
 
     private fun initListeners() {
@@ -56,23 +61,24 @@ class ScheduleScreenFragment : Fragment() {
         }
 
         binding.btnScheduleScheduleScreen.setOnClickListener {
-            successDialog.show(parentFragmentManager,"ScheduleSuccessDialog")
+            successDialog.show(parentFragmentManager, "ScheduleSuccessDialog")
         }
     }
 
     private fun showTimePickerDialog() {
-        val timePicker = CustomTimePickerDialog {time ->
+        val timePicker = CustomTimePickerDialog { time ->
             onTimeSelected(time)
         }
-        timePicker.show(parentFragmentManager,"DialogTimePicker")
+        timePicker.show(parentFragmentManager, "DialogTimePicker")
     }
 
-    private fun onTimeSelected(time:String) {
+    private fun onTimeSelected(time: String) {
         binding.btnInitTimePicker.text = dateTimeUtils.convertTo12HourFormat(time)
     }
 
-    private fun goToHome(){
-        val action = ScheduleScreenFragmentDirections.actionScheduleScreenFragmentToHomeScreenFragment()
+    private fun goToHome() {
+        val action =
+            ScheduleScreenFragmentDirections.actionScheduleScreenFragmentToHomeScreenFragment()
         findNavController().navigate(action)
     }
 }
