@@ -34,6 +34,14 @@
             app:layout_constraintTop_toBottomOf="@+id/btnInitTimePicker"
             tools:layout_editor_absoluteX="16dp">
 
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:layout_marginHorizontal="22dp"-->
+<!--                android:id="@+id/recyclerViewDaysOfWeek"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>-->
+
             <Button
                 android:id="@+id/btnMonday"
                 android:layout_width="30dp"

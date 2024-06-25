@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.bazan.devquiz"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "0.0.1"
@@ -43,7 +43,9 @@ android {
             res {
                 srcDirs("src\\main\\res", "src\\main\\res\\layouts\\components",
                     "src\\main\\res",
-                    "src\\main\\res\\layouts\\home", "src\\main\\res", "src\\main\\res\\layouts\\topic"
+                    "src\\main\\res\\layouts\\home", "src\\main\\res", "src\\main\\res\\layouts\\topic",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\schedule"
                 )
             }
         }
