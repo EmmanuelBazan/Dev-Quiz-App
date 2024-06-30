@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -54,10 +56,20 @@ android {
 
 dependencies {
     val navVersion = "2.7.7"
+    val roomVersion = "2.6.1"
     val lottieVersion = "3.5.0"
     val fragmentVersion = "1.8.0"
     val activityVersion = "1.9.0"
     val lifecycleVersion = "2.8.2"
+    val daggerHiltVersion = "2.51.1"
+
+    //Dagger Hilt
+    implementation("com.google.dagger:hilt-android:$daggerHiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$daggerHiltVersion")
+
+    //Room
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 
     //Lottie
     implementation ("com.airbnb.android:lottie:$lottieVersion")
