@@ -14,7 +14,9 @@ import com.bazan.devquiz.databinding.FragmentHomeScreenBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
 import com.bazan.devquiz.presentation.pages.home.adapters.QuestionReminderListAdapter
 import com.bazan.devquiz.presentation.pages.home.viewModel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeScreenFragment : Fragment() {
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!

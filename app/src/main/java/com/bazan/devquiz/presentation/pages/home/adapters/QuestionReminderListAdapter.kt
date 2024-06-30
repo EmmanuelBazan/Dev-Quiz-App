@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bazan.devquiz.R
+import com.bazan.devquiz.data.database.entities.ReminderEntity
 import com.bazan.devquiz.presentation.components.FooterViewHolder
 import com.bazan.devquiz.presentation.components.HeaderViewHolder
 import com.bazan.devquiz.presentation.pages.home.components.QuestionReminderListViewHolder
@@ -12,7 +13,7 @@ const val FOOTER_VIEW = 1
 const val HEADER_VIEW = 2
 
 class QuestionReminderListAdapter(
-    private val fileList: List<String>,
+    private val fileList: List<ReminderEntity>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
