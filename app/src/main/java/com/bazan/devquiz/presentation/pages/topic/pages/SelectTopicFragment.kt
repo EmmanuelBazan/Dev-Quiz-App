@@ -18,7 +18,9 @@ import com.bazan.devquiz.presentation.pages.home.adapters.QuestionReminderListAd
 import com.bazan.devquiz.presentation.pages.topic.adapters.TopicListAdapter
 import com.bazan.devquiz.presentation.pages.topic.components.DialogDifficulty
 import com.bazan.devquiz.presentation.pages.topic.viewModel.SelectTopicViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SelectTopicFragment : Fragment() {
     private var _binding: FragmentSelectTopicBinding? = null
     private val binding get() = _binding!!

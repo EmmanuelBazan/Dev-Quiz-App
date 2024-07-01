@@ -5,17 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.TextView
 import com.bazan.devquiz.R
+import com.bazan.devquiz.data.database.entities.TechnologyEntity
 
 class TopicListAdapter(
     private val context: Context,
-    private val topics: List<String>,
+    private val topics: List<TechnologyEntity>,
     private val onClick: () -> Unit
 ) :
     BaseAdapter() {
 
     override fun getCount(): Int {
-        return topics.size + 2
+        return topics.size
     }
 
     override fun getItem(position: Int): Any {
@@ -28,11 +30,16 @@ class TopicListAdapter(
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View
+        val title: TextView
         if (convertView == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_topic_list, parent, false)
+            title = view.findViewById(R.id.technologyTitle)
+            title.text = topics[position].name
         } else {
             view = convertView
         }
+
+
 
         view.setOnClickListener{
             onClick()
