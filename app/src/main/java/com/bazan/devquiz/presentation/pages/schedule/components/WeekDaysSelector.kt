@@ -1,19 +1,22 @@
 package com.bazan.devquiz.presentation.pages.schedule.components
 
-import android.app.Activity
 import android.content.Context
-import android.content.res.Resources
 import android.view.View
 import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
 import com.bazan.devquiz.R
-import com.bazan.devquiz.presentation.pages.schedule.ScheduleScreenViewModel
+import com.bazan.devquiz.presentation.pages.schedule.viewModel.ScheduleScreenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 class WeekDaysSelector(
     private val context: Context,
     private val activity: FragmentActivity,
-    private val root: View
+    private val root: View,
+    private val switchDayToSchedule: (index:Int) -> Unit,
+    private val daysToSchedule: MutableLiveData<List<Boolean>>,
 ) {
     private lateinit var btnMonday: Button
     private lateinit var btnTuesday: Button
@@ -22,8 +25,6 @@ class WeekDaysSelector(
     private lateinit var btnFriday: Button
     private lateinit var btnSaturday: Button
     private lateinit var btnSunday: Button
-
-    private val scheduleScreenViewModel: ScheduleScreenViewModel = ScheduleScreenViewModel()
 
     init {
         initComponents()
@@ -42,7 +43,7 @@ class WeekDaysSelector(
     }
 
     private fun initObservers() {
-        scheduleScreenViewModel.daysToSchedule.observe(activity) { days ->
+        daysToSchedule.observe(activity) { days ->
             for (i in days.indices) {
                 when (i) {
                     0 -> {
@@ -79,31 +80,31 @@ class WeekDaysSelector(
 
     private fun initListeners() {
         btnMonday.setOnClickListener {
-            scheduleScreenViewModel.switchDayToSchedule(0)
+            switchDayToSchedule(0)
         }
 
         btnTuesday.setOnClickListener {
-            scheduleScreenViewModel.switchDayToSchedule(1)
+            switchDayToSchedule(1)
         }
 
         btnWenesday.setOnClickListener {
-            scheduleScreenViewModel.switchDayToSchedule(2)
+            switchDayToSchedule(2)
         }
 
         btnThursday.setOnClickListener {
-            scheduleScreenViewModel.switchDayToSchedule(3)
+            switchDayToSchedule(3)
         }
 
         btnFriday.setOnClickListener {
-            scheduleScreenViewModel.switchDayToSchedule(4)
+            switchDayToSchedule(4)
         }
 
         btnSaturday.setOnClickListener {
-            scheduleScreenViewModel.switchDayToSchedule(5)
+            switchDayToSchedule(5)
         }
 
         btnSunday.setOnClickListener {
-            scheduleScreenViewModel.switchDayToSchedule(6)
+            switchDayToSchedule(6)
         }
     }
 

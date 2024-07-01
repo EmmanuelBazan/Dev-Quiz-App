@@ -2,7 +2,9 @@ package com.bazan.devquiz.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.bazan.devquiz.data.database.dao.DifficultyDao
 import com.bazan.devquiz.data.database.dao.ReminderDao
+import com.bazan.devquiz.data.database.dao.TechnologyDao
 import com.bazan.devquiz.data.database.entities.DifficultyEntity
 import com.bazan.devquiz.data.database.entities.QuestionEntity
 import com.bazan.devquiz.data.database.entities.ReminderEntity
@@ -14,4 +16,6 @@ import com.bazan.devquiz.data.database.entities.TechnologyEntity
 )
 abstract class DevQuizDatabase : RoomDatabase() {
     abstract fun getReminderDao():ReminderDao
+    abstract fun getDifficultyDao():DifficultyDao
+    abstract fun getTechnologyDao():TechnologyDao
 }

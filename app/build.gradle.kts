@@ -63,6 +63,9 @@ dependencies {
     val lifecycleVersion = "2.8.2"
     val daggerHiltVersion = "2.51.1"
 
+    //Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
     //Dagger Hilt
     implementation("com.google.dagger:hilt-android:$daggerHiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$daggerHiltVersion")

@@ -1,4 +1,4 @@
-package com.bazan.devquiz.presentation.pages.schedule
+package com.bazan.devquiz.presentation.pages.schedule.viewModel
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -7,12 +7,20 @@ import android.content.Intent
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.bazan.devquiz.NotificationBroadcast
-import com.bazan.devquiz.presentation.components.CustomTimePickerDialog
+import com.bazan.devquiz.data.database.entities.ReminderEntity
+import com.bazan.devquiz.domain.useCases.reminder.InsertReminderUseCase
 import com.bazan.devquiz.presentation.utils.DateTimeUtils
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import java.util.Calendar
+import javax.inject.Inject
 
-class ScheduleScreenViewModel() : ViewModel() {
+@HiltViewModel
+class ScheduleScreenViewModel @Inject constructor(
+    private val insertReminderUseCase: InsertReminderUseCase
+) : ViewModel() {
     val daysToSchedule =
         MutableLiveData<List<Boolean>>(arrayListOf(true, true, true, true, true, true, true))
 
@@ -86,6 +94,20 @@ class ScheduleScreenViewModel() : ViewModel() {
                     setDailyNotification(context, setHours, setMinutes, days[i])
                 }
             }
+        }
+    }
+
+    private fun insertReminder() {
+        viewModelScope.launch {
+            val reminder: ReminderEntity = ReminderEntity(
+                id = 0,
+                name = "fjdkfjd",
+                schedule = "fdkfjdkfj",
+                difficulty = 9,
+                technology = 0
+            )
+
+            insertReminderUseCase(reminder)
         }
     }
 }
