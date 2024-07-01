@@ -6,10 +6,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class GetAllTechnologyUseCase @Inject constructor(
+class GetTechnologyByIdUseCase @Inject constructor(
     private val technologyRepository: TechnologyRepository
 ) {
-    suspend operator fun invoke(): List<TechnologyEntity> = withContext(Dispatchers.IO) {
-        technologyRepository.getAllTechnologies()
+    suspend operator fun invoke(id:Int): TechnologyEntity = withContext(Dispatchers.IO) {
+        technologyRepository.getTechnologyById(id)
     }
 }

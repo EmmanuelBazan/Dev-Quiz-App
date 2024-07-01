@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bazan.devquiz.R
 import com.bazan.devquiz.databinding.FragmentScheduleScreenBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
@@ -25,6 +26,8 @@ class ScheduleScreenFragment : Fragment() {
     private lateinit var successDialog: CustomInformationDialog
     private lateinit var weekDaysSelector: WeekDaysSelector
 
+    val args: ScheduleScreenFragmentArgs by navArgs()
+
     private val scheduleScreenViewModel: ScheduleScreenViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -34,6 +37,11 @@ class ScheduleScreenFragment : Fragment() {
         _binding = FragmentScheduleScreenBinding.inflate(inflater, container, false)
         initComponent()
         initListeners()
+        initObservers()
+        scheduleScreenViewModel.getReminderDefaultName()
+        scheduleScreenViewModel.getCurrentHour()
+        scheduleScreenViewModel.idTechnology = args.idTechnology
+        scheduleScreenViewModel.idDifficulty = args.idDifficulty
         return binding.root
     }
 
@@ -61,6 +69,16 @@ class ScheduleScreenFragment : Fragment() {
             )
     }
 
+    private fun initObservers() {
+        scheduleScreenViewModel.mutableName.observe(requireActivity()) {name ->
+            binding.inputReminderNameScheduleScreen.setText(name)
+        }
+
+        scheduleScreenViewModel.mutableHour.observe(requireActivity()) {hour ->
+            binding.btnInitTimePicker.text = hour
+        }
+    }
+
     private fun initListeners() {
         binding.btnInitTimePicker.setOnClickListener {
             showTimePickerDialog()
@@ -71,8 +89,9 @@ class ScheduleScreenFragment : Fragment() {
         }
 
         binding.btnScheduleScheduleScreen.setOnClickListener {
-            scheduleScreenViewModel.insertReminder()
+            scheduleScreenViewModel.reminderName = binding.inputReminderNameScheduleScreen.text.toString()
             scheduleScreenViewModel.setNotificationsForSelectedDays(requireContext())
+            scheduleScreenViewModel.insertReminder()
             successDialog.show(parentFragmentManager, "ScheduleSuccessDialog")
         }
     }

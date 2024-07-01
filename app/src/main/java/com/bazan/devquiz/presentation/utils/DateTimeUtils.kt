@@ -1,5 +1,8 @@
 package com.bazan.devquiz.presentation.utils
 
+import java.text.SimpleDateFormat
+import java.util.Date
+
 class DateTimeUtils {
     fun convertTo12HourFormat(time: String): String {
         // Descomponer la cadena de tiempo en horas y minutos
@@ -13,5 +16,11 @@ class DateTimeUtils {
 
         // Formatear el resultado con un espacio alrededor del ":"
         return String.format("%02d : %02d %s", adjustedHours, minutes, period)
+    }
+
+    fun getCurrentHour(): String {
+        val dateFormat = SimpleDateFormat("hh : mm a")
+        val currentTime = Date()
+        return dateFormat.format(currentTime)
     }
 }

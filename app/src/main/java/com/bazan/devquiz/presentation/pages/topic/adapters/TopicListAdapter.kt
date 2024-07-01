@@ -12,7 +12,7 @@ import com.bazan.devquiz.data.database.entities.TechnologyEntity
 class TopicListAdapter(
     private val context: Context,
     private val topics: List<TechnologyEntity>,
-    private val onClick: () -> Unit
+    private val onClick: (idTech:Int) -> Unit
 ) :
     BaseAdapter() {
 
@@ -42,7 +42,7 @@ class TopicListAdapter(
 
 
         view.setOnClickListener{
-            onClick()
+            onClick(topics[position].id)
         }
 
         return view

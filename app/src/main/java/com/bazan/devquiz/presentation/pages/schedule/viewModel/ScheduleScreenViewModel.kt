@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bazan.devquiz.NotificationBroadcast
 import com.bazan.devquiz.data.database.entities.ReminderEntity
+import com.bazan.devquiz.domain.useCases.reminder.GetReminderFullByIdUseCase
 import com.bazan.devquiz.domain.useCases.reminder.InsertReminderUseCase
+import com.bazan.devquiz.domain.useCases.technology.GetTechnologyByIdUseCase
 import com.bazan.devquiz.presentation.utils.DateTimeUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,15 +21,46 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ScheduleScreenViewModel @Inject constructor(
-    private val insertReminderUseCase: InsertReminderUseCase
+    private val insertReminderUseCase: InsertReminderUseCase,
+    private val getTechnologyByIdUseCase: GetTechnologyByIdUseCase,
 ) : ViewModel() {
+
+    private val dateTimeUtils = DateTimeUtils()
+
     val daysToSchedule =
         MutableLiveData<List<Boolean>>(arrayListOf(true, true, true, true, true, true, true))
+
+    val mutableName = MutableLiveData<String>("")
+    val mutableHour = MutableLiveData<String>("")
 
     private var setHours = 0
     private var setMinutes = 0
 
-    private val dateTimeUtils: DateTimeUtils = DateTimeUtils()
+    var reminderName = ""
+    var reminderSchedule = ""
+    var idDifficulty = 1
+    var idTechnology = 1
+
+    init {
+
+    }
+
+    fun getCurrentHour() {
+        val current = dateTimeUtils.getCurrentHour()
+        val (hours, _, minutes) = current.split(" ").map { it }
+        setHours = hours.toInt()
+        setMinutes = minutes.toInt()
+        mutableHour.postValue(current)
+    }
+
+    fun getReminderDefaultName() {
+        viewModelScope.launch {
+            val res = getTechnologyByIdUseCase(idTechnology)
+            reminderName = "Recordatorio para ${res.name}"
+            mutableName.postValue("Recordatorio para ${res.name}")
+        }
+    }
+
     fun switchDayToSchedule(index: Int) {
         val currentDays = daysToSchedule.value ?: return
 
@@ -39,7 +72,7 @@ class ScheduleScreenViewModel @Inject constructor(
     }
 
     fun onTimeSelected(time: String, textView: TextView) {
-        textView.text = dateTimeUtils.convertTo12HourFormat(time)
+        mutableHour.postValue(dateTimeUtils.convertTo12HourFormat(time))
 
         // Descomponer la cadena de tiempo en horas y minutos
         val (hours, minutes) = time.split(":").map { it.toInt() }
@@ -47,7 +80,12 @@ class ScheduleScreenViewModel @Inject constructor(
         setMinutes = minutes
     }
 
-    private fun setDailyNotification(context: Context, setHours: Int, setMinutes: Int, dayOfWeek: Int) {
+    private fun setDailyNotification(
+        context: Context,
+        setHours: Int,
+        setMinutes: Int,
+        dayOfWeek: Int
+    ) {
         val calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
             set(Calendar.DAY_OF_WEEK, dayOfWeek)
@@ -63,7 +101,12 @@ class ScheduleScreenViewModel @Inject constructor(
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, NotificationBroadcast::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, dayOfWeek, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            dayOfWeek,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
@@ -97,16 +140,37 @@ class ScheduleScreenViewModel @Inject constructor(
         }
     }
 
+    private fun getShortWeekDay(index: Int, value: Boolean): String {
+        return when (index) {
+            0 -> if (value) "Lu " else ""
+            1 -> if (value) "Ma " else ""
+            2 -> if (value) "Mi " else ""
+            3 -> if (value) "Ju " else ""
+            4 -> if (value) "Vi " else ""
+            5 -> if (value) "Sa " else ""
+            6 -> if (value) "Do" else ""
+            else -> ""
+        }
+    }
+
     fun insertReminder() {
         viewModelScope.launch {
             val reminder: ReminderEntity = ReminderEntity(
-                name = "fjdkfjd",
-                schedule = "fdkfjdkfj",
-                difficulty = 1,
-                technology = 1
+                name = reminderName,
+                schedule = "${getReminderScheduleDescription()} • ${mutableHour.value}",
+                difficulty = idDifficulty,
+                technology = idTechnology
             )
 
             insertReminderUseCase(reminder)
         }
+    }
+
+    private fun getReminderScheduleDescription(): String {
+        reminderSchedule = ""
+        for (i in daysToSchedule.value!!.indices) {
+            reminderSchedule += getShortWeekDay(i, daysToSchedule.value!![i])
+        }
+        return reminderSchedule
     }
 }

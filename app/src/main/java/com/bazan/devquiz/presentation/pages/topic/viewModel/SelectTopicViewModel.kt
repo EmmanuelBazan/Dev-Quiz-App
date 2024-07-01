@@ -15,12 +15,13 @@ class SelectTopicViewModel @Inject constructor(
 ): ViewModel() {
     val topicList = MutableLiveData<List<TechnologyEntity>>(emptyList())
 
+    var idTechnology = 1
+
     init {
         getAllTechnologies()
     }
 
     private fun getAllTechnologies() {
-        println("### GET ALL TECH")
         viewModelScope.launch {
             val res = getAllTechnologyUseCase()
             println("$res")

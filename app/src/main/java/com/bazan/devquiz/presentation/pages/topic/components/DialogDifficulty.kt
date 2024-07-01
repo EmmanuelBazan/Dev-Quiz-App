@@ -14,7 +14,7 @@ import androidx.fragment.app.DialogFragment
 import com.bazan.devquiz.R
 
 class DialogDifficulty(
-    private val onSubmitBtnOkListener: () -> Unit,
+    private val onSubmitBtnOkListener: (id:Int) -> Unit,
     private val dialogLayout: Int,
     private val onSubmitBtnCancelListener: () -> Unit = { println("### NO CANCEL FUNCTION") }
 ): DialogFragment()  {
@@ -49,17 +49,17 @@ class DialogDifficulty(
 
     private fun initListeners() {
         btnEasy.setOnClickListener{
-            onSubmitBtnOkListener.invoke()
+            onSubmitBtnOkListener.invoke(1)
             dismiss()
         }
 
         btnIntermediate.setOnClickListener{
-            onSubmitBtnOkListener.invoke()
+            onSubmitBtnOkListener.invoke(2)
             dismiss()
         }
 
         btnHard.setOnClickListener{
-            onSubmitBtnOkListener.invoke()
+            onSubmitBtnOkListener.invoke(3)
             dismiss()
         }
 

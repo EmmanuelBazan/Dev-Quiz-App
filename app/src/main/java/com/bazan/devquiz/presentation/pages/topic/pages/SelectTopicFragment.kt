@@ -51,7 +51,10 @@ class SelectTopicFragment : Fragment() {
 
         dialogDifficulty = DialogDifficulty(onSubmitBtnOkListener = {
             val action =
-                SelectTopicFragmentDirections.actionSelectTopicFragmentToScheduleScreenFragment()
+                SelectTopicFragmentDirections.actionSelectTopicFragmentToScheduleScreenFragment(
+                    idTechnology = selectTopicViewModel.idTechnology,
+                    idDifficulty = it
+                )
             findNavController().navigate(action)
         }, R.layout.dialog_difficulty)
     }
@@ -63,6 +66,7 @@ class SelectTopicFragment : Fragment() {
                     binding.root.findViewById<GridView>(R.id.gridViewTopics)
 
                 val adapter = TopicListAdapter(requireContext(), topics, onClick = {
+                    selectTopicViewModel.idTechnology = it
                     dialogDifficulty.show(parentFragmentManager, "DialogDifficulty")
                 })
 
@@ -70,4 +74,6 @@ class SelectTopicFragment : Fragment() {
             }
         }
     }
+
+
 }

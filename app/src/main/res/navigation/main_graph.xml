@@ -40,5 +40,13 @@
         <action
             android:id="@+id/action_scheduleScreenFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment" />
+        <argument
+            android:name="idTechnology"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <argument
+            android:name="idDifficulty"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 </navigation>

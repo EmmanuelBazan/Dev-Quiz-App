@@ -10,4 +10,8 @@ class TechnologyRepository @Inject constructor(
     suspend fun getAllTechnologies(): List<TechnologyEntity> {
         return technologyDao.getAllTechnologies()
     }
+
+    suspend fun getTechnologyById(id: Int): TechnologyEntity {
+        return technologyDao.getTechnologyById(id)
+    }
 }

@@ -4,7 +4,7 @@ import com.bazan.devquiz.data.database.relations.ReminderFull
 import com.bazan.devquiz.data.repositories.ReminderRepository
 import javax.inject.Inject
 
-class GetgetReminderWithTechnologyUseCase @Inject constructor(
+class GetReminderFullByIdUseCase @Inject constructor(
     private val reminderRepository: ReminderRepository
 ) {
     suspend operator fun invoke(id: Int): ReminderFull {

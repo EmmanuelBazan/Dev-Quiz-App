@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.bazan.devquiz.data.database.entities.ReminderEntity
 import com.bazan.devquiz.domain.useCases.reminder.GetAllRemindersUseCase
 import com.bazan.devquiz.domain.useCases.reminder.GetAllRemindersFullUseCase
-import com.bazan.devquiz.domain.useCases.reminder.GetgetReminderWithTechnologyUseCase
+import com.bazan.devquiz.domain.useCases.reminder.GetReminderFullByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getAllRemindersUseCase: GetAllRemindersUseCase,
-    private val getgetReminderWithTechnologyUseCase: GetgetReminderWithTechnologyUseCase,
+    private val getReminderFullByIdUseCase: GetReminderFullByIdUseCase,
     private val getAllRemindersFullUseCase: GetAllRemindersFullUseCase,
 ) : ViewModel() {
     val questionReminders = MutableLiveData<List<ReminderEntity>?>(emptyList())
@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
 
     fun getReminderWithTech(id: Int) {
         viewModelScope.launch {
-            val res = getgetReminderWithTechnologyUseCase(id)
+            val res = getReminderFullByIdUseCase(id)
         }
     }
 }
