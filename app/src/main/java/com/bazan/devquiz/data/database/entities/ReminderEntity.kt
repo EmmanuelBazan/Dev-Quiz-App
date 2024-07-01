@@ -23,7 +23,7 @@ import androidx.room.PrimaryKey
     ]
 )
 data class ReminderEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "technology") val technology: Int,
     @ColumnInfo(name = "schedule") val schedule: String,

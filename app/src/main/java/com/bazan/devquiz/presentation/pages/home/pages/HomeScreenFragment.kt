@@ -32,6 +32,7 @@ class HomeScreenFragment : Fragment() {
         initComponents()
         initListeners()
         initRemindersList()
+        homeViewModel.getAllReminders()
         return binding.root
     }
 

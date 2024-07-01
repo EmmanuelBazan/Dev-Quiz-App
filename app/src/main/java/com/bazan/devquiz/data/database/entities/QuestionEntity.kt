@@ -23,7 +23,7 @@ import androidx.room.PrimaryKey
     ]
 )
 data class QuestionEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "question")val question: String,
     @ColumnInfo(name = "answer") val answer: String,
     @ColumnInfo(name = "technology") val technology: Int,

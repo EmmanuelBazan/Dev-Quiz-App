@@ -16,10 +16,10 @@ class HomeViewModel @Inject constructor(
     val questionReminders = MutableLiveData<List<ReminderEntity>?>(emptyList())
 
     init {
-        getAllReminders()
+//        getAllReminders()
     }
 
-    private fun getAllReminders() {
+    fun getAllReminders() {
         viewModelScope.launch {
             val res = getAllRemindersUseCase()
             questionReminders.postValue(res)

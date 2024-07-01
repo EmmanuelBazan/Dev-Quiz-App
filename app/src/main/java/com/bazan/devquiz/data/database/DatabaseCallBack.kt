@@ -25,11 +25,11 @@ class DatabaseCallBack @Inject constructor(
 
     private suspend fun populateDatabase(technologyDao: TechnologyDao, difficultyDao: DifficultyDao) {
         // Insertar dificultades
-        difficultyDao.insert(DifficultyEntity(id = 1, name = "Fácil", description = ""))
-        difficultyDao.insert(DifficultyEntity(id = 2, name = "Intermedio", description = ""))
-        difficultyDao.insert(DifficultyEntity(id = 3, name = "Difícil", description = ""))
+        difficultyDao.insert(DifficultyEntity(name = "Fácil", description = ""))
+        difficultyDao.insert(DifficultyEntity(name = "Intermedio", description = ""))
+        difficultyDao.insert(DifficultyEntity(name = "Difícil", description = ""))
 
         // Insertar tecnologías
-        technologyDao.insert(TechnologyEntity(id = 1, name = "React", icon = 1, description = ""))
+        technologyDao.insert(TechnologyEntity(name = "React", icon = 1, description = ""))
     }
 }
