@@ -71,6 +71,7 @@ class ScheduleScreenFragment : Fragment() {
         }
 
         binding.btnScheduleScheduleScreen.setOnClickListener {
+            scheduleScreenViewModel.insertReminder()
             scheduleScreenViewModel.setNotificationsForSelectedDays(requireContext())
             successDialog.show(parentFragmentManager, "ScheduleSuccessDialog")
         }

@@ -97,14 +97,14 @@ class ScheduleScreenViewModel @Inject constructor(
         }
     }
 
-    private fun insertReminder() {
+    fun insertReminder() {
         viewModelScope.launch {
             val reminder: ReminderEntity = ReminderEntity(
-                id = 0,
+                id = 1,
                 name = "fjdkfjd",
                 schedule = "fdkfjdkfj",
-                difficulty = 9,
-                technology = 0
+                difficulty = 1,
+                technology = 1
             )
 
             insertReminderUseCase(reminder)

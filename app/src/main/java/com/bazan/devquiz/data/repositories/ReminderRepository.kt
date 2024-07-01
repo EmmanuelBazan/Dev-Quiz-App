@@ -12,6 +12,7 @@ class ReminderRepository @Inject constructor(
     }
 
     suspend fun insertReminder(reminder: ReminderEntity) {
+        println("### REMINDER: $reminder")
         reminderDao.insert(reminder)
     }
 }
