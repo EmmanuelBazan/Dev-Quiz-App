@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import com.bazan.devquiz.R
 import com.bazan.devquiz.data.database.entities.TechnologyEntity
+import com.bazan.devquiz.presentation.utils.IconMapper
 
 class TopicListAdapter(
     private val context: Context,
@@ -31,10 +33,13 @@ class TopicListAdapter(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View
         val title: TextView
+        val img: ImageView
         if (convertView == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_topic_list, parent, false)
             title = view.findViewById(R.id.technologyTitle)
+            img = view.findViewById(R.id.imgTechLogoItemTopic)
             title.text = topics[position].name
+            img.setImageResource(IconMapper.getIconResource(topics[position].icon))
         } else {
             view = convertView
         }

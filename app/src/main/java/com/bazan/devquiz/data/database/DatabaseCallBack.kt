@@ -31,5 +31,6 @@ class DatabaseCallBack @Inject constructor(
 
         // Insertar tecnologías
         technologyDao.insert(TechnologyEntity(name = "React", icon = 1, description = ""))
+        technologyDao.insert(TechnologyEntity(name = "JavaScript", icon = 2, description = ""))
     }
 }

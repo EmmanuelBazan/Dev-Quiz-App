@@ -38,10 +38,10 @@ class ScheduleScreenFragment : Fragment() {
         initComponent()
         initListeners()
         initObservers()
-        scheduleScreenViewModel.getReminderDefaultName()
-        scheduleScreenViewModel.getCurrentHour()
         scheduleScreenViewModel.idTechnology = args.idTechnology
         scheduleScreenViewModel.idDifficulty = args.idDifficulty
+        scheduleScreenViewModel.getReminderDefaultName()
+        scheduleScreenViewModel.getCurrentHour()
         return binding.root
     }
 
