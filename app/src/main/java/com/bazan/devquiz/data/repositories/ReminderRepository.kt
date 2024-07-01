@@ -1,5 +1,6 @@
 package com.bazan.devquiz.data.repositories
 
+import com.bazan.devquiz.data.database.relations.ReminderFull
 import com.bazan.devquiz.data.database.dao.ReminderDao
 import com.bazan.devquiz.data.database.entities.ReminderEntity
 import javax.inject.Inject
@@ -12,7 +13,14 @@ class ReminderRepository @Inject constructor(
     }
 
     suspend fun insertReminder(reminder: ReminderEntity) {
-        println("### REMINDER: $reminder")
         reminderDao.insert(reminder)
+    }
+
+    suspend fun getReminderWithTechnologyById(id: Int): ReminderFull {
+        return reminderDao.getReminderWithTechnologyById(id)
+    }
+
+    suspend fun getAllRemindersFull(): List<ReminderFull> {
+        return reminderDao.getAllRemindersFull()
     }
 }

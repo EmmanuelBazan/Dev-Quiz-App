@@ -32,7 +32,7 @@ class HomeScreenFragment : Fragment() {
         initComponents()
         initListeners()
         initRemindersList()
-        homeViewModel.getAllReminders()
+        homeViewModel.getAllRemindersFull()
         return binding.root
     }
 
@@ -55,7 +55,7 @@ class HomeScreenFragment : Fragment() {
     }
 
     private fun initRemindersList() {
-        homeViewModel.questionReminders.observe(requireActivity()) { reminders ->
+        homeViewModel.reminderFullList.observe(requireActivity()) { reminders ->
             if (reminders != null) {
                 val recyclerView =
                     binding.root.findViewById<RecyclerView>(R.id.recyclerViewQuestionsReminders)

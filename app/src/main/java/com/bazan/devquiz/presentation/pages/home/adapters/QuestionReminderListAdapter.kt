@@ -1,10 +1,10 @@
 package com.bazan.devquiz.presentation.pages.home.adapters
 
+import com.bazan.devquiz.data.database.relations.ReminderFull
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bazan.devquiz.R
-import com.bazan.devquiz.data.database.entities.ReminderEntity
 import com.bazan.devquiz.presentation.components.FooterViewHolder
 import com.bazan.devquiz.presentation.components.HeaderViewHolder
 import com.bazan.devquiz.presentation.pages.home.components.QuestionReminderListViewHolder
@@ -13,7 +13,7 @@ const val FOOTER_VIEW = 1
 const val HEADER_VIEW = 2
 
 class QuestionReminderListAdapter(
-    private val fileList: List<ReminderEntity>,
+    private val reminderList: List<ReminderFull>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -45,14 +45,14 @@ class QuestionReminderListAdapter(
         }
     }
 
-    override fun getItemCount(): Int = fileList.size + 2
+    override fun getItemCount(): Int = reminderList.size + 2
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         try {
             when (holder) {
                 is QuestionReminderListViewHolder -> {
-                    val item = fileList[position - 1]
-                    holder.render()
+                    val item = reminderList[position - 1]
+                    holder.render(item)
                 }
                 is HeaderViewHolder -> {
                     holder.ren()
@@ -69,7 +69,7 @@ class QuestionReminderListAdapter(
     override fun getItemViewType(position: Int): Int {
         if (position == 0) {
             return HEADER_VIEW
-        } else if (position == fileList.size + 1) {
+        } else if (position == reminderList.size + 1) {
             return FOOTER_VIEW
         }
         return super.getItemViewType(position)

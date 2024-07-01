@@ -27,7 +27,7 @@ class DaysOfWeekListAdapter (
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         try {
             when (holder) {
-                is QuestionReminderListViewHolder -> {
+                is DayOfWeekListViewHolder -> {
                     val item = fileList[position]
                     holder.render()
                 }

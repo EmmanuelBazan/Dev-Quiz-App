@@ -47,7 +47,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/descriptionItemFile"
+            android:id="@+id/txtScheduleItemReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(09:00am)"
@@ -75,6 +75,7 @@
                 android:layout_height="5dp"/>
 
             <TextView
+                android:id="@+id/txtDifficultyItemReminder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(Dificultad)"/>
