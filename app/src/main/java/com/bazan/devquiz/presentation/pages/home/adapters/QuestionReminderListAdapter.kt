@@ -14,6 +14,7 @@ const val HEADER_VIEW = 2
 
 class QuestionReminderListAdapter(
     private val reminderList: List<ReminderFull>,
+    private val onClick: (idTechnology:Int,idDifficulty:Int) -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -52,7 +53,7 @@ class QuestionReminderListAdapter(
             when (holder) {
                 is QuestionReminderListViewHolder -> {
                     val item = reminderList[position - 1]
-                    holder.render(item)
+                    holder.render(item,onClick)
                 }
                 is HeaderViewHolder -> {
                     holder.ren()

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_selectTopicFragment"
             app:destination="@id/selectTopicFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_questionScreenFragment"
+            app:destination="@id/questionScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectTopicFragment"
@@ -40,6 +43,20 @@
         <action
             android:id="@+id/action_scheduleScreenFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment" />
+        <argument
+            android:name="idTechnology"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <argument
+            android:name="idDifficulty"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionScreenFragment"
+        android:name="com.bazan.devquiz.presentation.pages.question.pages.QuestionScreenFragment"
+        android:label="fragment_question_screen"
+        tools:layout="@layout/fragment_question_screen" >
         <argument
             android:name="idTechnology"
             app:argType="integer"

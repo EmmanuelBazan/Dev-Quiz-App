@@ -48,8 +48,9 @@ class HomeScreenFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.btnAddReminder.setOnClickListener{
-            val action = HomeScreenFragmentDirections.actionHomeScreenFragmentToSelectTopicFragment()
+        binding.btnAddReminder.setOnClickListener {
+            val action =
+                HomeScreenFragmentDirections.actionHomeScreenFragmentToSelectTopicFragment()
             findNavController().navigate(action)
         }
     }
@@ -65,7 +66,10 @@ class HomeScreenFragment : Fragment() {
                     LinearLayoutManager.VERTICAL, false
                 )
 
-                recyclerView.adapter = QuestionReminderListAdapter(reminders)
+                recyclerView.adapter = QuestionReminderListAdapter(reminders, onClick = {idTechnology,idDifficulty ->
+                    val action = HomeScreenFragmentDirections.actionHomeScreenFragmentToQuestionScreenFragment(idTechnology,idDifficulty)
+                    findNavController().navigate(action)
+                })
             }
         }
     }
