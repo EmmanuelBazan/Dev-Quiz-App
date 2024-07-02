@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.pages.question.pages.QuestionScreenFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".presentation.pages.question.pages.QuestionScreenFragment">
 
-    <include android:id="@+id/appBarQuestionScreen" layout="@layout/custom_app_bar"/>
+    <include
+        android:id="@+id/appBarQuestionScreen"
+        layout="@layout/custom_app_bar" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerQuestionScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

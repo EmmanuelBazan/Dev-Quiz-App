@@ -47,7 +47,7 @@ android {
                     "src\\main\\res",
                     "src\\main\\res\\layouts\\home", "src\\main\\res", "src\\main\\res\\layouts\\topic",
                     "src\\main\\res",
-                    "src\\main\\res\\layouts\\schedule"
+                    "src\\main\\res\\layouts\\schedule", "src\\main\\res", "src\\main\\res\\layouts\\question"
                 )
             }
         }
