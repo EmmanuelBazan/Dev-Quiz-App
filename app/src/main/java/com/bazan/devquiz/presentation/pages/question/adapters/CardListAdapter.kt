@@ -13,9 +13,10 @@ import android.widget.FrameLayout
 import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.RecyclerView
 import com.bazan.devquiz.R
+import com.bazan.devquiz.data.database.relations.FullQuestion
 import kotlin.math.abs
 
-class CardListAdapter(private val images: List<Int>, private val context: Context) :
+class CardListAdapter(private val questions: List<FullQuestion>, private val context: Context) :
     RecyclerView.Adapter<CardListAdapter.ImageViewHolder>() {
     private var downX: Float = 0f
     private var downY: Float = 0f
@@ -52,7 +53,7 @@ class CardListAdapter(private val images: List<Int>, private val context: Contex
     }
 
     override fun getItemCount(): Int {
-        return images.size
+        return questions.size
     }
 
     private fun isTap(event: MotionEvent, onTap: () -> Unit): Boolean {

@@ -13,15 +13,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.animation.doOnEnd
 import androidx.core.view.GestureDetectorCompat
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.viewpager2.widget.ViewPager2
 import com.bazan.devquiz.R
 import com.bazan.devquiz.databinding.FragmentQuestionScreenBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
 import com.bazan.devquiz.presentation.pages.question.adapters.CardListAdapter
+import com.bazan.devquiz.presentation.pages.question.viewModel.QuestionViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
+@AndroidEntryPoint
 class QuestionScreenFragment : Fragment() {
     private var _binding: FragmentQuestionScreenBinding? = null
     private val binding get() = _binding!!
@@ -30,6 +35,9 @@ class QuestionScreenFragment : Fragment() {
     private lateinit var viewPager: ViewPager2
     private lateinit var cardAdapter: CardListAdapter
 
+    private val questionViewModel: QuestionViewModel by activityViewModels()
+    private val args: QuestionScreenFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +45,7 @@ class QuestionScreenFragment : Fragment() {
         _binding = FragmentQuestionScreenBinding.inflate(inflater, container, false)
         initComponents()
         initListeners()
+        questionViewModel.getQuestionByTechAndDifficulty(args.idTechnology, args.idDifficulty)
         return binding.root
     }
 
@@ -49,10 +58,13 @@ class QuestionScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewPager = requireView().findViewById(R.id.viewPagerQuestionScreen)
-        cardAdapter = CardListAdapter(listOf(1,2,3,4,5),requireContext())
-        viewPager.adapter = cardAdapter
+
+        questionViewModel.questionList.observe(viewLifecycleOwner) { questions ->
+
+            cardAdapter = CardListAdapter(questions, requireContext())
+            viewPager.adapter = cardAdapter
+        }
 
         // Configurar el PagerSnapHelper para el centrado
         val snapHelper = PagerSnapHelper()
@@ -62,12 +74,15 @@ class QuestionScreenFragment : Fragment() {
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
     }
 
-    private fun initListeners() {
+    private fun initCardList() {
+        questionViewModel.questionList.observe(requireActivity()) { questions ->
+            println("### QUESTIONS: $questions")
+
+        }
     }
 
-
-
-
+    private fun initListeners() {
+    }
 
 
 }
