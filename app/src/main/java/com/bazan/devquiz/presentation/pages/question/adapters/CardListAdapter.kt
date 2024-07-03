@@ -10,10 +10,13 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.RecyclerView
 import com.bazan.devquiz.R
 import com.bazan.devquiz.data.database.relations.FullQuestion
+import com.bazan.devquiz.presentation.utils.IconMapper
 import kotlin.math.abs
 
 class CardListAdapter(private val questions: List<FullQuestion>, private val context: Context) :
@@ -25,8 +28,12 @@ class CardListAdapter(private val questions: List<FullQuestion>, private val con
 
     inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val view = itemView
-        val cardFront = itemView.findViewById<View>(R.id.card_face_front)
-        val cardBack = itemView.findViewById<View>(R.id.card_face_back)
+        val cardFront: View = itemView.findViewById(R.id.card_face_front)
+        val cardBack: View = itemView.findViewById(R.id.card_face_back)
+        val txtQuestion: TextView = itemView.findViewById<View>(R.id.viewCardFront).findViewById(R.id.txtQuestionCardFront)
+        val txtDifficulty: TextView = itemView.findViewById<View>(R.id.viewCardFront).findViewById(R.id.txtDifficultyCardFront)
+        val icon: ImageView = itemView.findViewById<View>(R.id.viewCardFront).findViewById(R.id.iconCardFront)
+        val txtAnswer: TextView = itemView.findViewById<View>(R.id.viewCardBack).findViewById(R.id.txtAnswerCardBack)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -37,6 +44,10 @@ class CardListAdapter(private val questions: List<FullQuestion>, private val con
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         var isCardFront = true
+        holder.txtQuestion.text = questions[position].question.question
+        holder.txtDifficulty.text = questions[position].difficulty.name
+        holder.icon.setImageResource(IconMapper.getIconResource(questions[position].technology.icon))
+        holder.txtAnswer.text = "Respuesta: ${questions[position].question.answer}"
         holder.view.setOnTouchListener { _, event ->
             isTap(event, onTap = {
                 isCardFront = !isCardFront
