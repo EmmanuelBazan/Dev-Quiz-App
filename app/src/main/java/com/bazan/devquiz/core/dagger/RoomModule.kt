@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.bazan.devquiz.data.database.DatabaseCallBack
 import com.bazan.devquiz.data.database.DevQuizDatabase
 import com.bazan.devquiz.data.database.dao.DifficultyDao
+import com.bazan.devquiz.data.database.dao.QuestionDao
 import com.bazan.devquiz.data.database.dao.ReminderDao
 import com.bazan.devquiz.data.database.dao.TechnologyDao
 import dagger.Module
@@ -12,6 +13,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -34,12 +36,14 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideDatabaseCallBack(
-        technologyDaoProvider: javax.inject.Provider<TechnologyDao>,
-        difficultyDaoProvider: javax.inject.Provider<DifficultyDao>
+        technologyDaoProvider: Provider<TechnologyDao>,
+        difficultyDaoProvider: Provider<DifficultyDao>,
+        questionDaoProvides: Provider<QuestionDao>,
     ): DatabaseCallBack {
         return DatabaseCallBack(
             { technologyDaoProvider.get() },
-            { difficultyDaoProvider.get() }
+            { difficultyDaoProvider.get() },
+            { questionDaoProvides.get() }
         )
     }
 
@@ -59,5 +63,11 @@ object RoomModule {
     @Provides
     fun provideReminderDao(db: DevQuizDatabase): ReminderDao {
         return db.getReminderDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideQuestionDao(db: DevQuizDatabase): QuestionDao {
+        return db.getQuestionDao()
     }
 }
