@@ -56,14 +56,17 @@
         android:id="@+id/questionScreenFragment"
         android:name="com.bazan.devquiz.presentation.pages.question.pages.QuestionScreenFragment"
         android:label="fragment_question_screen"
-        tools:layout="@layout/fragment_question_screen" >
+        tools:layout="@layout/fragment_question_screen">
         <argument
             android:name="idTechnology"
-            app:argType="integer"
-            android:defaultValue="1" />
+            android:defaultValue="1"
+            app:argType="integer" />
         <argument
             android:name="idDifficulty"
-            app:argType="integer"
-            android:defaultValue="1" />
+            android:defaultValue="1"
+            app:argType="integer" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="devquiz://com.bazan.devquiz/questionScreenFragment" />
     </fragment>
 </navigation>

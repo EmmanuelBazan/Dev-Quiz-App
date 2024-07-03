@@ -8,7 +8,11 @@ import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bazan.devquiz.DIFF_ID_EXTRA
+import com.bazan.devquiz.MESSAGE_EXTRA
 import com.bazan.devquiz.NotificationBroadcast
+import com.bazan.devquiz.TEC_ID_EXTRA
+import com.bazan.devquiz.TITLE_EXTRA
 import com.bazan.devquiz.data.database.entities.ReminderEntity
 import com.bazan.devquiz.domain.useCases.reminder.GetReminderFullByIdUseCase
 import com.bazan.devquiz.domain.useCases.reminder.InsertReminderUseCase
@@ -38,6 +42,7 @@ class ScheduleScreenViewModel @Inject constructor(
 
     var reminderName = ""
     var reminderSchedule = ""
+    var technologyName = ""
     var idDifficulty = 1
     var idTechnology = 1
 
@@ -58,6 +63,7 @@ class ScheduleScreenViewModel @Inject constructor(
             val res = getTechnologyByIdUseCase(idTechnology)
             reminderName = "Recordatorio para ${res.name}"
             mutableName.postValue("Recordatorio para ${res.name}")
+            technologyName = res.name
         }
     }
 
@@ -100,7 +106,12 @@ class ScheduleScreenViewModel @Inject constructor(
         }
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, NotificationBroadcast::class.java)
+        val intent = Intent(context, NotificationBroadcast::class.java).apply {
+            putExtra(TITLE_EXTRA, reminderName)
+            putExtra(MESSAGE_EXTRA, "Hora de practicar un poco de $technologyName")
+            putExtra(TEC_ID_EXTRA, idTechnology)
+            putExtra(DIFF_ID_EXTRA, idDifficulty)
+        }
         val pendingIntent = PendingIntent.getBroadcast(
             context,
             dayOfWeek,

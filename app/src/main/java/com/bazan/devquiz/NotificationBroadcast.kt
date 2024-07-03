@@ -9,14 +9,18 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.navigation.NavDeepLinkBuilder
 
 const val NOTIFICATION_ID = 1
 const val CHANNEL_ID = "1"
 const val TITLE_EXTRA = "titleExtra"
 const val MESSAGE_EXTRA = "messageExtra"
+const val TEC_ID_EXTRA = "technologyId"
+const val DIFF_ID_EXTRA = "difficultyId"
 class NotificationBroadcast : BroadcastReceiver() {
 //    override fun onReceive(context: Context, intent: Intent?) {
 //        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
@@ -44,14 +48,26 @@ class NotificationBroadcast : BroadcastReceiver() {
         }
 
         // Crear la notificación
-        val notificationIntent = Intent(context, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val title = intent.getStringExtra(TITLE_EXTRA) ?: "Scheduled Notification"
+        val message = intent.getStringExtra(MESSAGE_EXTRA) ?: "This is your scheduled notification."
+        val tecId = intent.getIntExtra(TEC_ID_EXTRA, 1)
+        val diffId = intent.getIntExtra(DIFF_ID_EXTRA, 1)
+
+        // Crear el PendingIntent con NavDeepLinkBuilder
+        val pendingIntent = NavDeepLinkBuilder(context)
+            .setGraph(R.navigation.main_graph)
+            .setDestination(R.id.questionScreenFragment)
+            .setArguments(Bundle().apply {
+                putInt("idTechnology", tecId)
+                putInt("idDifficulty", diffId)
+            })
+            .createPendingIntent()
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.levels_icon)
-            .setContentTitle("Scheduled Notification")
-            .setContentText("This is your scheduled notification.")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
 
