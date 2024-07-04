@@ -25,6 +25,7 @@ import com.bazan.devquiz.presentation.pages.question.adapters.CardListAdapter
 import com.bazan.devquiz.presentation.pages.question.viewModel.QuestionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class QuestionScreenFragment : Fragment() {
@@ -64,6 +65,12 @@ class QuestionScreenFragment : Fragment() {
 
             cardAdapter = CardListAdapter(questions, requireContext())
             viewPager.adapter = cardAdapter
+
+            // Establecer un índice aleatorio
+            if (questions.isNotEmpty()) {
+                val randomIndex = Random.nextInt(questions.size - 1)
+                viewPager.setCurrentItem(randomIndex, false)
+            }
         }
 
         // Configurar el PagerSnapHelper para el centrado
