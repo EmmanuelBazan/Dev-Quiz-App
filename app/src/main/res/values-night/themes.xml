@@ -3,7 +3,10 @@
     <style name="Base.Theme.DevQuiz" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/mainGreen</item>
-        <item name="android:windowBackground">@color/black_0D</item>
+        <item name="android:windowBackground">@color/black_25</item>
         <item name="android:textColor">@color/white_f2</item>
+
+        <item name="android:statusBarColor">@color/black_25</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Txt_12_B_Main" parent="@android:style/TextAppearance.Small">
+        <item name="android:textSize">12dp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/mainGreen</item>
+    </style>
+
+    <style name="Txt_16_R_Default" parent="@android:style/TextAppearance.Small">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="Txt_14_R_Default" parent="@android:style/TextAppearance.Small">
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="Txt_10_M_Main" parent="@android:style/TextAppearance.Small">
+        <item name="android:textSize">10dp</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/mainGreen</item>
+    </style>
+
+</resources>

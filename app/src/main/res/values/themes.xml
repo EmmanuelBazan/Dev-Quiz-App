@@ -5,6 +5,12 @@
         <item name="colorPrimary">@color/mainGreen</item>
         <item name="android:windowBackground">@color/white_f2</item>
         <item name="android:textColor">@color/black_33</item>
+
+        <item name="android:statusBarColor">@color/white_f2</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:fontFamily">@font/poppins_regular</item>
+
     </style>
 
     <style name="TimePicker" parent="android:Theme.Material.Light.Dialog">

@@ -7,14 +7,13 @@
     tools:context=".presentation.pages.home.pages.HomeScreenFragment"
     android:orientation="vertical">
 
-    <include android:id="@+id/appBarHomeScreen" layout="@layout/custom_app_bar"/>
+    <include android:id="@+id/appBarHomeScreen" layout="@layout/custom_home_app_bar"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginHorizontal="22dp"
             android:id="@+id/recyclerViewQuestionsReminders"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

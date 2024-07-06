@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,9 +23,8 @@ class HomeScreenFragment : Fragment() {
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var customAppBar: CustomAppBar
-
     private val homeViewModel: HomeViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,14 +38,7 @@ class HomeScreenFragment : Fragment() {
     }
 
     private fun initComponents() {
-        val appBarView = binding.root.findViewById<View>(R.id.appBarHomeScreen)
-        customAppBar = CustomAppBar(
-            requireContext(),
-            appBarView,
-            "Dev Quiz",
-            onGoBackSubmit = {},
-            onlyTitle = true
-        )
+
     }
 
     private fun initListeners() {

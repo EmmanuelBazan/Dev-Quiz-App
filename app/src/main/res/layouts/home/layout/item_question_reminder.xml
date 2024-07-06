@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp"
-    android:layout_margin="5dp">
+    app:cardCornerRadius="15dp"
+    android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="12dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,14 +15,17 @@
 
         <LinearLayout
             android:id="@+id/layoutTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingRight="5dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/topicInfoLayout">
 
             <TextView
                 android:id="@+id/titleTopic"
+                style="@style/Txt_12_B_Main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(Titulo de la tecnologia)"/>
@@ -32,6 +36,7 @@
 
             <TextView
                 android:id="@+id/titleReminder"
+                style="@style/Txt_16_R_Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(Titulo del recordatorio)"/>
@@ -44,6 +49,7 @@
 
         <TextView
             android:id="@+id/txtScheduleItemReminder"
+            style="@style/Txt_10_M_Main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(09:00am)"
@@ -73,6 +79,7 @@
 
             <TextView
                 android:id="@+id/txtDifficultyItemReminder"
+                style="@style/Txt_14_R_Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(Dificultad)"/>
