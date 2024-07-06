@@ -12,11 +12,11 @@
         android:id="@+id/gridViewTopics"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:horizontalSpacing="15dp"
-        android:verticalSpacing="10dp"
+        android:horizontalSpacing="0dp"
+        android:verticalSpacing="0dp"
         android:numColumns="2"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="22dp"
+        android:paddingVertical="0dp"
+        android:paddingHorizontal="7dp"
         android:scrollbars="none"/>
 
 </LinearLayout>
