@@ -8,11 +8,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavDeepLinkBuilder
 
 const val NOTIFICATION_ID = 1
@@ -64,7 +66,8 @@ class NotificationBroadcast : BroadcastReceiver() {
             .createPendingIntent()
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.levels_icon)
+            .setSmallIcon(R.drawable.icon_logo)
+            .setColor(ContextCompat.getColor(context, R.color.mainGreen))
             .setContentTitle(title)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_HIGH)

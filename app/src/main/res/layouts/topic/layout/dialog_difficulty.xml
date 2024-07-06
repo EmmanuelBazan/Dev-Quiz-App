@@ -9,7 +9,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white_f2"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -80,7 +79,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:background="@drawable/corner_radius_10"
-                android:text="Facil" />
+                android:text="Facil"
+                android:textColor="@color/white_f2"/>
 
             <Button
                 android:id="@+id/btnIntermediateDifficultyDialog"
@@ -89,7 +89,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:background="@drawable/corner_radius_10"
-                android:text="Intermedio" />
+                android:text="Intermedio"
+                android:textColor="@color/white_f2"/>
 
             <Button
                 android:id="@+id/btnHardDifficultyDialog"
@@ -98,7 +99,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:background="@drawable/corner_radius_10"
-                android:text="Dificil" />
+                android:text="Dificil"
+                android:textColor="@color/white_f2"/>
 
             <Space
                 android:layout_width="wrap_content"

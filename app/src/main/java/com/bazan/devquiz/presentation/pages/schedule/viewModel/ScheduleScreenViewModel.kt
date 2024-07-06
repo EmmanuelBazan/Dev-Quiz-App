@@ -116,7 +116,7 @@ class ScheduleScreenViewModel @Inject constructor(
             context,
             dayOfWeek,
             intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
         )
 
         alarmManager.setRepeating(

@@ -156,6 +156,7 @@
                 android:paddingLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:textColor="@color/black_33"
                 android:background="@drawable/input_background" />
 
         </LinearLayout>
