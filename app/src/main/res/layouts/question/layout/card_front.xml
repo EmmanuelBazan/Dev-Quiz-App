@@ -17,13 +17,16 @@
         android:padding="20dp">
 
         <TextView
+            style="@style/Txt_18_B_Main"
+            android:textAlignment="center"
             android:id="@+id/txtQuestionCardFront"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="fjdkfjdkfjkdjfkdjfkjdfkjdkfj"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
             android:id="@+id/iconCardFront"
@@ -34,6 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
+            style="@style/Txt_12_B_Default"
             android:id="@+id/txtDifficultyCardFront"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

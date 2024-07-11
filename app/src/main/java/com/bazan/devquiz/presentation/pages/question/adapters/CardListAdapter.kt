@@ -47,7 +47,7 @@ class CardListAdapter(private val questions: List<FullQuestion>, private val con
         holder.txtQuestion.text = questions[position].question.question
         holder.txtDifficulty.text = questions[position].difficulty.name
         holder.icon.setImageResource(IconMapper.getIconResource(questions[position].technology.icon))
-        holder.txtAnswer.text = "Respuesta: ${questions[position].question.answer}"
+        holder.txtAnswer.text = "${questions[position].question.answer}"
         holder.view.setOnTouchListener { _, event ->
             isTap(event, onTap = {
                 isCardFront = !isCardFront
