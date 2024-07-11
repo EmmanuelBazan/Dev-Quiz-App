@@ -44,4 +44,6 @@ class HomeViewModel @Inject constructor(
             val res = getReminderFullByIdUseCase(id)
         }
     }
+
+
 }

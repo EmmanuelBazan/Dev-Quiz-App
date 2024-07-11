@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bazan.devquiz.DIFF_ID_EXTRA
 import com.bazan.devquiz.MESSAGE_EXTRA
+import com.bazan.devquiz.NOTIFICATION_ID
 import com.bazan.devquiz.NotificationBroadcast
 import com.bazan.devquiz.TEC_ID_EXTRA
 import com.bazan.devquiz.TITLE_EXTRA
@@ -18,6 +19,7 @@ import com.bazan.devquiz.domain.useCases.reminder.GetReminderFullByIdUseCase
 import com.bazan.devquiz.domain.useCases.reminder.InsertReminderUseCase
 import com.bazan.devquiz.domain.useCases.technology.GetTechnologyByIdUseCase
 import com.bazan.devquiz.presentation.utils.DateTimeUtils
+import com.bazan.devquiz.presentation.utils.IdGenerator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -92,6 +94,8 @@ class ScheduleScreenViewModel @Inject constructor(
         setMinutes: Int,
         dayOfWeek: Int
     ) {
+        val notificationId = IdGenerator.generateId()
+
         val calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
             set(Calendar.DAY_OF_WEEK, dayOfWeek)
@@ -111,10 +115,11 @@ class ScheduleScreenViewModel @Inject constructor(
             putExtra(MESSAGE_EXTRA, "Hora de practicar un poco de $technologyName")
             putExtra(TEC_ID_EXTRA, idTechnology)
             putExtra(DIFF_ID_EXTRA, idDifficulty)
+            putExtra(NOTIFICATION_ID, notificationId.toInt())
         }
         val pendingIntent = PendingIntent.getBroadcast(
             context,
-            dayOfWeek,
+            notificationId.toInt(),
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
         )

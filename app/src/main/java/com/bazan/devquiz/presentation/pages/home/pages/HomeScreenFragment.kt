@@ -1,11 +1,16 @@
 package com.bazan.devquiz.presentation.pages.home.pages
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import android.widget.Toolbar
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -23,7 +28,14 @@ class HomeScreenFragment : Fragment() {
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
 
+    private val notificationPermissionRequestCode = 1
+
     private val homeViewModel: HomeViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        checkNotificationPermission()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,5 +78,43 @@ class HomeScreenFragment : Fragment() {
                 })
             }
         }
+    }
+
+    private fun checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13 (API nivel 33)
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+                // No tenemos el permiso, solicitarlo
+                ActivityCompat.requestPermissions(requireActivity(),
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS), notificationPermissionRequestCode)
+            } else {
+                // Ya tenemos el permiso, proceder con la lógica de notificaciones
+                setupNotifications()
+            }
+        } else {
+            // Para versiones anteriores a Android 13
+            setupNotifications()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            notificationPermissionRequestCode -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // Permiso concedido, proceder con la lógica de notificaciones
+                    setupNotifications()
+                } else {
+                    // Permiso denegado, manejar la situación
+                    Toast.makeText(requireContext(), "Permiso para notificaciones denegado", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+            // Otras solicitudes de permisos pueden manejarse aquí
+        }
+    }
+
+    private fun setupNotifications() {
+        // Tu lógica de configuración de notificaciones
     }
 }

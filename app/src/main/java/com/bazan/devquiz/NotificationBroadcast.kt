@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
@@ -17,12 +18,13 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavDeepLinkBuilder
 
-const val NOTIFICATION_ID = 1
+const val NOTIFICATION_ID = "notificationId"
 const val CHANNEL_ID = "1"
 const val TITLE_EXTRA = "titleExtra"
 const val MESSAGE_EXTRA = "messageExtra"
 const val TEC_ID_EXTRA = "technologyId"
 const val DIFF_ID_EXTRA = "difficultyId"
+const val GROUP_KEY_NOTIFICATIONS = "com.example.NOTIFICATIONS"
 class NotificationBroadcast : BroadcastReceiver() {
 //    override fun onReceive(context: Context, intent: Intent?) {
 //        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
@@ -37,7 +39,7 @@ class NotificationBroadcast : BroadcastReceiver() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             val name = "My Notification Channel"
             val descriptionText = "Channel for my notifications"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
                 enableLights(true)
@@ -54,6 +56,7 @@ class NotificationBroadcast : BroadcastReceiver() {
         val message = intent.getStringExtra(MESSAGE_EXTRA) ?: "This is your scheduled notification."
         val tecId = intent.getIntExtra(TEC_ID_EXTRA, 1)
         val diffId = intent.getIntExtra(DIFF_ID_EXTRA, 1)
+        val notificationId = intent.getIntExtra(NOTIFICATION_ID,0)
 
         // Crear el PendingIntent con NavDeepLinkBuilder
         val pendingIntent = NavDeepLinkBuilder(context)
@@ -89,8 +92,27 @@ class NotificationBroadcast : BroadcastReceiver() {
                 // for ActivityCompat#requestPermissions for more details.
                 return
             }
-            notify(1, builder.build())
+            notify(notificationId, builder.build())
         }
+    }
+
+    private fun createGroupSummaryNotification(context: Context) {
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel("default", "Default", NotificationManager.IMPORTANCE_DEFAULT)
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val summaryNotification = NotificationCompat.Builder(context, "default")
+            .setContentTitle("Resumen de Notificaciones")
+            .setContentText("Tienes nuevas notificaciones")
+            .setSmallIcon(R.drawable.icon_logo)
+            .setGroup(GROUP_KEY_NOTIFICATIONS)
+            .setGroupSummary(true)
+            .build()
+
+        notificationManager.notify(0, summaryNotification) // ID de la notificación de resumen
     }
 
 }
