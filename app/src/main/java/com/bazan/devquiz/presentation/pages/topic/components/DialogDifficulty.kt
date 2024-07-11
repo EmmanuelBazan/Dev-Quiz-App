@@ -44,7 +44,6 @@ class DialogDifficulty(
         btnEasy = dialogView.findViewById(R.id.btnEasyDifficultyDialog)
         btnIntermediate = dialogView.findViewById(R.id.btnIntermediateDifficultyDialog)
         btnHard = dialogView.findViewById(R.id.btnHardDifficultyDialog)
-        btnClose = dialogView.findViewById(R.id.btnCloseCustomDialog)
     }
 
     private fun initListeners() {
@@ -60,10 +59,6 @@ class DialogDifficulty(
 
         btnHard.setOnClickListener{
             onSubmitBtnOkListener.invoke(3)
-            dismiss()
-        }
-
-        btnClose.setOnClickListener{
             dismiss()
         }
     }

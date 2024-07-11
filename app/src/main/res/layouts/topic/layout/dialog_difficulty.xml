@@ -22,34 +22,13 @@
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="10dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingEnd="10dp"
-                android:gravity="end">
-
-                <ImageButton
-                    android:id="@+id/btnCloseCustomDialog"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/close_icon"
-                    android:padding="0dp"
-                    app:tint="@color/black_33"
-                    android:background="@color/transparent"/>
-
-            </LinearLayout>
-
-            <Space
-                android:layout_width="wrap_content"
                 android:layout_height="36dp"/>
 
             <TextView
+                style="@style/Txt_18_B_Main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selecciona la dificultad" />
+                android:text="Dificultad" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -79,6 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:background="@drawable/corner_radius_10"
+                android:textStyle="bold"
+                android:textSize="16dp"
                 android:text="Facil"
                 android:textColor="@color/white_f2"/>
 
@@ -90,6 +71,8 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/corner_radius_10"
                 android:text="Intermedio"
+                android:textStyle="bold"
+                android:textSize="16dp"
                 android:textColor="@color/white_f2"/>
 
             <Button
@@ -100,6 +83,8 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/corner_radius_10"
                 android:text="Dificil"
+                android:textStyle="bold"
+                android:textSize="16dp"
                 android:textColor="@color/white_f2"/>
 
             <Space
