@@ -27,10 +27,8 @@ Una aplicacion enfocada a los desarrolladores que desean mejorar o aprender nuev
 
 ## Requisitos
 
-- Android Studio (versión específica)
-- Kotlin (versión específica)
-- API de Android mínima y recomendada
-- Otros requisitos o dependencias
+- Android Studio
+- Kotlin
 
 ## Instalación
 
