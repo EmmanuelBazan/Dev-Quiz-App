@@ -63,6 +63,9 @@ dependencies {
     val lifecycleVersion = "2.8.2"
     val daggerHiltVersion = "2.51.1"
 
+    //PlayStore
+    implementation("com.google.android.gms:play-services-ads:23.2.0")
+
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 

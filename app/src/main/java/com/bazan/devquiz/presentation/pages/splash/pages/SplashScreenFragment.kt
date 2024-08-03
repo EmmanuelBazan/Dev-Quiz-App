@@ -18,7 +18,7 @@ class SplashScreenFragment : Fragment() {
     private var _binding: FragmentSplashScreenBinding? = null
     private val binding get() = _binding!!
 
-    private var shouldRestart: Boolean = false;
+    private var shouldRestart: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

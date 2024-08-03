@@ -23,7 +23,14 @@ import com.bazan.devquiz.databinding.FragmentQuestionScreenBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
 import com.bazan.devquiz.presentation.pages.question.adapters.CardListAdapter
 import com.bazan.devquiz.presentation.pages.question.viewModel.QuestionViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Arrays
 import kotlin.math.abs
 import kotlin.random.Random
 
@@ -31,6 +38,8 @@ import kotlin.random.Random
 class QuestionScreenFragment : Fragment() {
     private var _binding: FragmentQuestionScreenBinding? = null
     private val binding get() = _binding!!
+
+    private var mInterstitialAd: InterstitialAd? = null
 
     private lateinit var customAppBar: CustomAppBar
     private lateinit var viewPager: ViewPager2
@@ -48,6 +57,35 @@ class QuestionScreenFragment : Fragment() {
         initListeners()
         questionViewModel.getQuestionByTechAndDifficulty(args.idTechnology, args.idDifficulty)
         return binding.root
+    }
+
+    private fun initInterstitial() {
+        val testDeviceIds = Arrays.asList("176DA4119D4BFCC4FB4CA4B49D4B529F")
+        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
+        MobileAds.setRequestConfiguration(configuration)
+
+        var adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(requireContext(),"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                println()
+                adError?.toString()?.let { Log.d("INTERSTITIAL ERROR", it) }
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                Log.d("SUCCESS INTERSTITIAL", "Ad was loaded")
+                mInterstitialAd = interstitialAd
+            }
+        })
+    }
+
+    private fun showInterstitial(){
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(requireActivity())
+        } else {
+            Log.d("TAG", "The interstitial ad wasn't ready yet.")
+        }
     }
 
     private fun initComponents() {
@@ -79,6 +117,11 @@ class QuestionScreenFragment : Fragment() {
 
         // Opcional: Cambiar la orientación del ViewPager2
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        initInterstitial()
+
+        // Muestra el anuncio interstitial en un evento, por ejemplo, un clic en un botón
+        showInterstitial()
     }
 
     private fun initCardList() {
