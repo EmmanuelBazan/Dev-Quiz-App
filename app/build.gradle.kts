@@ -1,9 +1,19 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
     id("dagger.hilt.android.plugin")
     kotlin("kapt")
+}
+
+val localPropertiesFile: File = rootProject.file("local.properties")
+val localProperties = Properties()
+
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use { localProperties.load(it) }
 }
 
 android {
@@ -21,12 +31,35 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Leer propiedades desde local.properties
+            val admobAppId: String = localProperties.getProperty("ID_APP_ADMOB", "ca-app-pub-3940256099942544~3347511713")
+            val interstitialId: String = localProperties.getProperty("ID_ADMOB_INTERSTITIAL_DEBUG", "ca-app-pub-3940256099942544/1033173712")
+
+            // Reemplazar placeholders en AndroidManifest.xml
+            manifestPlaceholders["ADMOB_APP_ID"] = admobAppId
+
+            // Pasar las propiedades a BuildConfig
+            buildConfigField("String", "INTERSTITIAL_ID", "\"$interstitialId\"")
+        }
+        create("qa") {
+            initWith(getByName("debug"))
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // Leer propiedades desde local.properties
+            val admobAppId: String = localProperties.getProperty("ID_APP_ADMOB", "ca-app-pub-3940256099942544~3347511713")
+            val interstitialId: String = localProperties.getProperty("ID_ADMOB_INTERSTITIAL_RELEASE", "ca-app-pub-3940256099942544/1033173712")
+
+            // Reemplazar placeholders en AndroidManifest.xml
+            manifestPlaceholders["ADMOB_APP_ID"] = admobAppId
+
+            // Pasar las propiedades a BuildConfig
+            buildConfigField("String", "INTERSTITIAL_ID", "\"$interstitialId\"")
         }
     }
     compileOptions {

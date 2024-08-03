@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.viewpager2.widget.ViewPager2
+import com.bazan.devquiz.BuildConfig
 import com.bazan.devquiz.R
 import com.bazan.devquiz.databinding.FragmentQuestionScreenBinding
 import com.bazan.devquiz.presentation.components.CustomAppBar
@@ -48,6 +49,8 @@ class QuestionScreenFragment : Fragment() {
     private val questionViewModel: QuestionViewModel by activityViewModels()
     private val args: QuestionScreenFragmentArgs by navArgs()
 
+    val interstitialId = BuildConfig.INTERSTITIAL_ID
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,7 +69,9 @@ class QuestionScreenFragment : Fragment() {
 
         var adRequest = AdRequest.Builder().build()
 
-        InterstitialAd.load(requireContext(),"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+        println("### INTERSTITIAL ID $interstitialId ")
+
+        InterstitialAd.load(requireContext(),interstitialId, adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 println()
                 adError?.toString()?.let { Log.d("INTERSTITIAL ERROR", it) }
