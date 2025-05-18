@@ -87,7 +87,7 @@ object QuestionData {
             )
         )
 
-// Preguntas de JavaScript Nivel Mid-Level
+        // Preguntas de JavaScript Nivel Mid-Level
         questionDao.insert(
             QuestionEntity(
                 question = "¿Qué es la propagación de eventos en JavaScript?",
@@ -169,7 +169,7 @@ object QuestionData {
             )
         )
 
-// Preguntas de JavaScript Nivel Senior
+        // Preguntas de JavaScript Nivel Senior
         questionDao.insert(
             QuestionEntity(
                 question = "¿Cómo funciona el Event Loop con las tareas micro y macro en JavaScript?",
@@ -456,6 +456,280 @@ object QuestionData {
                 difficulty = 3
             )
         )
+
+        //Preguntas Java nivel Junior
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué es una variable en Java y cómo se declara?",
+                answer = "Una variable en Java es un espacio de memoria que almacena un valor de un tipo específico. Se declara indicando el tipo y el nombre, por ejemplo: `int contador;`.",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cuáles son los tipos de datos primitivos en Java?",
+                answer = "Java tiene ocho tipos de datos primitivos: `byte`, `short`, `int`, `long`, `float`, `double`, `char` y `boolean`.",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo se crea un método en Java y qué partes lo componen?",
+                answer = "Un método en Java se define con un modificador de acceso, tipo de retorno, nombre y parámetros. Por ejemplo: `public void saludar(String nombre) { ... }`.",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué es una clase en Java?",
+                answer = "Una clase en Java es un molde o plantilla que define atributos y métodos para crear objetos de ese tipo.",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cuál es la diferencia entre `==` y `equals()` en Java?",
+                answer = "`==` compara si dos referencias apuntan al mismo objeto, mientras que `equals()` compara el contenido o valor lógico definido por la implementación del método.",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo se declara y utiliza un arreglo en Java?",
+                answer = "Se declara indicando el tipo seguido de corchetes, por ejemplo: `int[] numeros = new int[5];`. Se accede con índices: `numeros[0] = 10;`.",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué es una excepción en Java y cómo se maneja?",
+                answer = "Una excepción es un evento que interrumpe el flujo normal del programa. Se maneja con bloques `try { ... } catch (TipoExcepcion e) { ... }`.",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué son los modificadores de acceso en Java?",
+                answer = "Son palabras clave que controlan la visibilidad: `public`, `protected`, `private` y el acceso por defecto (package-private).",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo se implementa un bucle `for` en Java?",
+                answer = "La sintaxis básica es: `for (int i = 0; i < 10; i++) { // código }`, donde se inicializa, establece la condición y el incremento.",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué es la herencia en Java?",
+                answer = "La herencia permite que una clase (subclase) herede atributos y métodos de otra (superclase) usando la palabra clave `extends`.",
+                technology = 3,
+                difficulty = 1
+            )
+        )
+
+        //Preguntas Java nivel Mid
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué son los genéricos en Java y cómo se usan en una colección?",
+                answer = "Los genéricos permiten definir tipos parametrizados para garantizar la seguridad de tipos en tiempo de compilación. Por ejemplo: `List<String> lista = new ArrayList<>();` asegura que solo se almacenen Strings.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cuál es la diferencia entre `ArrayList` y `LinkedList`?",
+                answer = "`ArrayList` está basado en un array dinámico, ofrece acceso rápido por índice pero inserciones/eliminaciones lentas en medio. `LinkedList` usa nodos enlazados, inserciones/eliminaciones rápidas pero acceso por índice más lento.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo se implementa y utiliza un `Stream` en Java 8 para filtrar una lista?",
+                answer = "Se obtiene un stream de la colección y se encadenan operaciones. Ejemplo: `lista.stream().filter(x -> x.startsWith(\"A\")).collect(Collectors.toList());` filtra elementos que empiezan con “A”.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué es un `Lambda` en Java y cuándo es útil?",
+                answer = "Un lambda es una expresión que implementa una interfaz funcional de forma concisa. Se usa para pasar comportamientos, por ejemplo en `Comparator<String> cmp = (a, b) -> a.length() - b.length();`.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo funciona la sincronización con `synchronized` y cuándo usarla?",
+                answer = "La palabra clave `synchronized` evita condiciones de carrera al bloquear un objeto o método. Se usa cuando múltiples hilos acceden/modifican datos compartidos.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué diferencia hay entre una interfaz y una clase abstracta?",
+                answer = "Una interfaz define solo métodos abstractos (y estáticos/default), mientras que una clase abstracta puede tener implementación completa y estado. Una clase puede implementar múltiples interfaces pero solo heredar de una clase abstracta.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo se maneja la herencia de excepciones personalizadas en Java?",
+                answer = "Se crea una clase que extiende de `Exception` o `RuntimeException`. Por ejemplo: `public class MiExcepcion extends Exception { ... }`, y se lanza con `throw new MiExcepcion(\"msg\");` y se captura con `catch (MiExcepcion e)`.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué es el `Optional` y cómo ayuda a evitar `NullPointerException`?",
+                answer = "`Optional<T>` es un contenedor que puede o no contener un valor. Obliga a verificar su presencia con `isPresent()` o `orElse()`, reduciendo la probabilidad de NPE.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo funciona el recolector de basura (GC) en Java a alto nivel?",
+                answer = "El GC gestiona la memoria liberando objetos inaccesibles. Opera en generaciones (Young, Old) y utiliza algoritmos como Mark-and-Sweep para identificar y recolectar memoria no referenciada.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué son los bloques estáticos (`static {}`) y para qué se utilizan?",
+                answer = "Un bloque `static` se ejecuta una vez al cargar la clase y se usa para inicializar variables estáticas o realizar configuraciones iniciales.",
+                technology = 3,
+                difficulty = 2
+            )
+        )
+
+        //Preguntas Java nivel Senior
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué es el Java Memory Model y cómo garantiza la coherencia entre hilos?",
+                answer = "El Java Memory Model define las reglas de visibilidad y ordenación de operaciones entre hilos mediante relaciones como happens-before, asegurando que las escrituras de un hilo sean visibles a otro bajo sincronización y palabras clave como `volatile` y `synchronized`.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Para qué sirve la palabra clave `volatile` y en qué casos es insuficiente?",
+                answer = "`volatile` garantiza visibilidad inmediata de lecturas/escrituras entre hilos y evita reordenamientos, pero no ofrece atomicidad en operaciones compuestas; en esos casos se requieren mecanismos como `AtomicInteger` o bloques `synchronized`.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo funciona ForkJoinPool y cuándo deberías usarlo?",
+                answer = "ForkJoinPool implementa el patrón divídelo y vencerás para tareas recursivas, trabajando con steal-work para equilibrar carga; es ideal en casos de algoritmos divide-and-conquer y operaciones paralelas de CPU-bound.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo implementarías un `ClassLoader` personalizado y para qué podría utilizarse?",
+                answer = "Extender `ClassLoader` y sobrescribir `findClass()`, cargando bytes de clase desde fuentes alternativas (red, base de datos). Se usa en entornos modulares, hot-reloading y contenedores de aplicaciones para aislar espacios de clases.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué estrategias de recolección de basura ofrece la JVM y cómo elegir la más adecuada?",
+                answer = "La JVM incluye GC como Serial, Parallel, CMS, G1 y ZGC. La elección depende de la latencia y el throughput deseado: p. ej., G1 para pausas predecibles en aplicaciones de servidor, ZGC para heaps muy grandes con pausas mínimas.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo funciona el sistema de módulos de Java (JPMS) y qué beneficios aporta?",
+                answer = "JPMS organiza el código en módulos con `module-info.java`, definiendo exportaciones e importaciones explícitas para mejorar encapsulación, reducir el classpath, y evitar conflictos de dependencias en tiempo de ejecución.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué es `sun.misc.Unsafe` y cuáles son los riesgos de usarlo?",
+                answer = "`Unsafe` permite operaciones de bajo nivel como acceso directo a memoria y atomics sin validaciones de JVM. Puede mejorar rendimiento en casos extremos, pero rompe la seguridad de tipos y puede causar corrupción de memoria si se usa incorrectamente.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo funcionan los canales y selectores de NIO para I/O multiplexado?",
+                answer = "NIO usa `SelectableChannel` y `Selector` para registrar múltiples canales en un solo hilo, detectando cuáles están listos para operaciones de lectura/escritura sin bloquear, optimizando servidores que manejan muchas conexiones.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Qué es un procesador de anotaciones y cómo se integra en el ciclo de compilación?",
+                answer = "Un procesador de anotaciones implementa la interfaz `Processor` en `javax.annotation.processing`, se registra mediante `META-INF/services` y genera código o recursos durante la fase de compilación al procesar anotaciones definidas.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
+        questionDao.insert(
+            QuestionEntity(
+                question = "¿Cómo influye la compilación JIT en el rendimiento y qué es la compilación en tiers?",
+                answer = "El compilador JIT traduce bytecode a código nativo en tiempo de ejecución, adaptándose al perfil de ejecución. En tiered compilation, primero se generan compilaciones rápidas (C1) y posteriormente optimizadas (C2) para equilibrar tiempo de arranque y rendimiento a largo plazo.",
+                technology = 3,
+                difficulty = 3
+            )
+        )
+
 
     }
 }

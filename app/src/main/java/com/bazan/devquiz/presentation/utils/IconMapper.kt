@@ -6,6 +6,7 @@ object IconMapper {
     private val iconMap = mapOf(
         1 to R.drawable.react,
         2 to R.drawable.javascript_icon,
+        3 to R.drawable.java_icon,
         // Agrega más mapeos aquí según tus iconos locales y sus IDs en la base de datos
     )
 
